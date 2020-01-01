@@ -2,6 +2,11 @@
 session_start();
 require('../dbconnect.php');
 
+	if(!isset($_SESSION['join'])) {
+		header('Location: index.php');
+		exit();
+	}
+
 if (!empty($_POST)) {
 	if ($_POST['name'] === '') {
 		$error['name'] = 'blank';
