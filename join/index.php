@@ -16,7 +16,11 @@ if (!empty($_POST)) {
 	}
 
 	if (empty($error)) {
+		$image = date('YmdHis') . $_FILES['image']['name'];
+		move_uploaded_file($_FILES['image']['tmp_name'],
+		'../member_picture/' . $image);
 		$_SESSION['join'] = $_POST;
+		$_SESSION['join']['image'] = $image;
 		header('Location: check.php');
 		exit();
 	}
