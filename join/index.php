@@ -14,6 +14,13 @@ if (!empty($_POST)) {
 	if ($_POST['password'] === '') {
 		$error['password'] = 'blank';
 	}
+	$fileName = $_FILES['image']['name'];
+	if (!empty(fileName)) {
+		$ext = substr($fileName, -3);
+		if ($ext != 'jpg' && $ext != 'gif' && $ext != 'png') {
+			$error['image'] = 'type';
+		}
+	}
 
 	if (empty($error)) {
 		$image = date('YmdHis') . $_FILES['image']['name'];
