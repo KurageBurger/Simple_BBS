@@ -79,6 +79,9 @@ if (!empty($_POST)) {
 		<dt>写真など</dt>
 		<dd>
         	<input type="file" name="image" size="35" value="test"  />
+			<?php if ($error['image'] === 'type'): ?>
+			<p class="error">* アップロードする画像は.gif .jpg .pngを指定してください</p>
+			<?php endif; ?>
         </dd>
 	</dl>
 	<div><input type="submit" value="入力内容を確認する" /></div>
