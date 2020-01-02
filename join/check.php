@@ -11,7 +11,7 @@ if (!empty($_POST)) {
 	echo $statement->execute(array(
 		$_SESSION['join']['name'],
 		$_SESSION['join']['email'],
-		$_SESSION['join']['password'],
+		shal($_SESSION['join']['password']),
 		$_SESSION['join']['image']
 	));
 	unset($_SESSION['join']);
