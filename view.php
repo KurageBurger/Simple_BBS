@@ -6,6 +6,10 @@ if (empty($_REQUEST['id'])) {
   header('Location: index.php');
   exit();
 }
+
+$posts = $db->prepare('SELECT m.name, m.picture, p.* FROM members m, posts p WHERE m.id=p.member_id AND p.id=?');
+$posts->execute(array($_REQUEST['id']));
+
 ?>
 
 <!DOCTYPE html>
