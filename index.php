@@ -15,10 +15,11 @@ require('dbconnect.php');
 
 if (!empty($_POST)) {
   if ($_POST['message'] !== '') {
-    $message = $db->prepare('INSERT INTO posts SET member_id=?,message=?, created=NOW()');
+    $message = $db->prepare('INSERT INTO posts SET member_id=?,message=?, reply_message_id=?, created=NOW()');
     $message->execute(array(
       $member['id'],
-      $_POST['message']
+      $_POST['message'],
+      $_POST['reply_post_id']
     ));
 
     header('Location: index.php');
@@ -60,7 +61,7 @@ if (isset($_REQUEST['res'])) {
         <dt><?php print(htmlspecialchars($member['name'], ENT_QUOTES)); ?>さん、メッセージをどうぞ</dt>
         <dd>
           <textarea name="message" cols="50" rows="5"><?php print(htmlspecialchars($message, ENT_QUOTES)); ?></textarea>
-          <input type="hidden" name="reply_post_id" value="" />
+          <input type="hidden" name="reply_post_id" value="<?php print(htmlspecialchars($_REQUEST["res"], ENT_QUOTES)); ?>" />
         </dd>
       </dl>
       <div>
