@@ -26,7 +26,7 @@ if (!empty($_POST)) {
   }
 }
 
-$posts = $db->query('SELECT m.name, m.picture, p.* FROM members m, posts p WHERE m.id=p.member_id=p.member_id ORDER BY p.created DESC');
+$posts = $db->query('SELECT m.name, m.picture, p.* FROM members m, posts p WHERE m.id=p.member_id ORDER BY p.created DESC');
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -63,12 +63,12 @@ $posts = $db->query('SELECT m.name, m.picture, p.* FROM members m, posts p WHERE
 
 <?php foreach ($posts as $post): ?>
     <div class="msg">
-    <img src="member_picture" width="48" height="48" alt="" />
-    <p><?php print(htmlspecialchars($post['message'], ENT_QUOTES)); ?><span class="name">（）</span>[<a href="index.php?res=">Re</a>]</p>
-    <p class="day"><a href="view.php?id="></a>
+    <img src="member_picture/<?php print(htmlspecialchars($post['picture'], ENT_QUOTES)); ?>" width="48" height="48" alt="<?php print(htmlspecialchars($post['name'], ENT_QUOTES)); ?>" />
+    <p><?php print(htmlspecialchars($post['message'], ENT_QUOTES)); ?><span class="name">（<?php print(htmlspecialchars($post['name'], ENT_QUOTES)); ?>）</span>[<a href="index.php?res=">Re</a>]</p>
+    <p class="day"><a href="view.php?id="><?php print(htmlspecialchars($post['created'], ENT_QUOTES)); ?></a>
 <a href="view.php?id=">
 返信元のメッセージ</a>
-[<a href="delete.php?id="
+[<a href="delete.php"
 style="color: #F33;">削除</a>]
     </p>
     </div>
