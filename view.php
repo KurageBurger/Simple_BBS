@@ -1,3 +1,13 @@
+<?php
+session_start();
+require('dbconnect.php');
+
+if (empty($_REQUEST['id'])) {
+  header('Location: index.php');
+  exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
